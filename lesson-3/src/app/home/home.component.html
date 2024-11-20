@@ -1,0 +1,7 @@
+<p>This is my home component</p>
+
+<ul>
+  <li *ngFor="let fact of catFacts; index as i">
+    <app-child [index]="i"></app-child>
+  </li>
+</ul>
