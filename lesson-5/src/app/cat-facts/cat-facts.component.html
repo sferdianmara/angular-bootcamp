@@ -1,0 +1,5 @@
+<ul>
+  <app-cat-fact-card *ngFor="let fact of catFacts$ | async; index as i" [fact]="fact" [id]="i">
+  </app-cat-fact-card>
+</ul>
+<a routerLink="/"> Take me back home</a>
