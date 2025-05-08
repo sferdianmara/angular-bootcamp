@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable} from 'rxjs';
+import {delay, map, Observable} from 'rxjs';
 import {CatFactApiResponse, FactInfo} from './cat-fact-api-response';
 
 @Injectable({

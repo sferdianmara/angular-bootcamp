@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {filter, map, Observable, switchMap} from 'rxjs';
+import {filter, interval, map, mergeMap, Observable, switchMap, tap} from 'rxjs';
 import {CatFactService} from '../services/cat-fact-api.service';
 import {AsyncPipe} from '@angular/common';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-cat-fact-details',
@@ -16,21 +16,25 @@ import {ActivatedRoute} from '@angular/router';
 export class CatFactDetailsComponent implements OnInit {
   public catFact$: Observable<string | undefined> = new Observable<string | undefined>();
 
-  constructor(private catFactService: CatFactService, private activatedRoute: ActivatedRoute) {
+  @Input() set id (id: string) {
+    this.catFact$ = this.catFactService.getFact(+id);
   }
 
-  // @Input() set id(id: string) {
-  //   const index: number = +id;
-  //   if (index != null && !isNaN(index)) {
-  //     this.catFact$ = this.catFactService.getFact(index);
-  //   }
-  // }
+  constructor(private catFactService: CatFactService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
+   // TODO: use automatic component binding
 
   public ngOnInit() {
-    this.catFact$ = this.activatedRoute.params.pipe(
-      map(params => params['id']),
-      switchMap(id => this.catFactService.getFact(+id))
-    );
+    // this.catFact$ = this.activatedRoute.params.pipe(
+    //   map(params => params?.['id']),
+    //   tap(() => console.warn('before request')),
+    //   switchMap(id => this.catFactService.getFact(id)),
+    //   tap(() => console.warn('after request')),
+    // );
+  }
+
+  public navigateToNext(): void {
+    //this.router.navigate(['/fact/2']);
   }
 
 }

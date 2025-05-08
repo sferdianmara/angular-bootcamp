@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-cat-fact-card',
@@ -12,10 +12,10 @@ export class CatFactCardComponent {
   @Input() fact: string = '';
   @Input() id: number | undefined;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   public navigateToFact(): void {
-    this.router.navigate(['/fact/' + this.id]);
+    this.router.navigate([this.id], { relativeTo: this.activatedRoute });
   }
 }

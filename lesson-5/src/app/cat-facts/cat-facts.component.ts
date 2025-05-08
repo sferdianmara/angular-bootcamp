@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {RouterLink} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import {CatFactService} from '../services/cat-fact-api.service';
 import {Observable} from 'rxjs';
 import {AsyncPipe, NgForOf} from '@angular/common';
@@ -12,7 +12,8 @@ import {CatFactCardComponent} from '../cat-fact-card/cat-fact-card.component';
     RouterLink,
     NgForOf,
     AsyncPipe,
-    CatFactCardComponent
+    CatFactCardComponent,
+    RouterOutlet,
   ],
   templateUrl: './cat-facts.component.html',
   styleUrl: './cat-facts.component.css'
